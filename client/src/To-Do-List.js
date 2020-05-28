@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Header, Form, Input, Icon } from "semantic-ui-react";
+import { Card, Header, Form, Input, Icon, Button } from "semantic-ui-react";
 
 let endpoint = "http://localhost:8080";
 
@@ -26,7 +26,6 @@ class ToDoList extends Component {
 
   onSubmit = () => {
     let { task } = this.state;
-    // console.log("pRINTING task", this.state.task);
     if (task) {
       axios
         .post(
@@ -57,15 +56,17 @@ class ToDoList extends Component {
         this.setState({
           items: res.data.map(item => {
             let color = "yellow";
+            let decoration = "none"
 
             if (item.status) {
               color = "green";
+              decoration = "line-through"
             }
             return (
               <Card key={item._id} color={color} fluid>
                 <Card.Content>
                   <Card.Header textAlign="left">
-                    <div style={{ wordWrap: "break-word" }}>{item.task}</div>
+                    <div style={{ wordWrap: "break-word", textDecoration: decoration }}>{item.task}</div>
                   </Card.Header>
 
                   <Card.Meta textAlign="right">
@@ -143,21 +144,28 @@ class ToDoList extends Component {
     return (
       <div>
         <div className="row">
-          <Header className="header" as="h2">
+          <Header className="header" as="h1" textAlign='center'>
             TO DO LIST
           </Header>
         </div>
         <div className="row">
           <Form onSubmit={this.onSubmit}>
-            <Input
-              type="text"
-              name="task"
-              onChange={this.onChange}
-              value={this.state.task}
-              fluid
-              placeholder="Create Task"
-            />
-            {/* <Button >Create Task</Button> */}
+            <Form.Group>
+              <Form.Input
+                type="text"
+                name="task"
+                onChange={this.onChange}
+                value={this.state.task}
+                width={16}
+                placeholder="Create Task"
+                size="large"
+              />
+              <Button color="black" icon>
+                <Icon 
+                  name="chevron right" 
+                  />
+              </Button>
+            </Form.Group>
           </Form>
         </div>
         <div className="row">
