@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Header, Form, Input, Icon, Button } from "semantic-ui-react";
+import { Card, Header, Form, Icon, Button } from "semantic-ui-react";
 
 let endpoint = "http://localhost:8080";
 
@@ -44,14 +44,12 @@ class ToDoList extends Component {
           this.setState({
             task: ""
           });
-          console.log(res);
         });
     }
   };
 
   getTask = () => {
     axios.get(endpoint + "/api/task").then(res => {
-      console.log(res);
       if (res.data) {
         this.setState({
           items: res.data.map(item => {
@@ -110,7 +108,6 @@ class ToDoList extends Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.getTask();
       });
   };
@@ -123,7 +120,6 @@ class ToDoList extends Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.getTask();
       });
   };
@@ -136,7 +132,6 @@ class ToDoList extends Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.getTask();
       });
   };
