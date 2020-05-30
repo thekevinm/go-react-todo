@@ -144,7 +144,7 @@ class ToDoList extends Component {
           </Header>
         </div>
         <div className="row">
-          <Form onSubmit={this.onSubmit}>
+          <Form onSubmit={this.onSubmit} autocomplete="false">
             <Form.Group>
               <Form.Input
                 type="text"
